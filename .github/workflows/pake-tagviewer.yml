@@ -118,18 +118,19 @@ jobs:
 
       - name: Build with pake-cli
         run: |
-          node ./script/build_with_pake_cli.js
-        env:
-          URL: ./stable-diffusion-inspector/dist/index.html
-          NAME: tagviewer
-          HEIGHT: ${{ inputs.height }}
-          WIDTH: ${{ inputs.width }}
-          HIDE_TITLE_BAR: ${{ inputs.hide_title_bar }}
-          FULLSCREEN: ${{ inputs.fullscreen }}
-          RESIZE: ${{ inputs.resize }}
-          MULTI_ARCH: ${{ inputs.multi_arch }}
-          TARGETS: ${{ inputs.targets }}
-          SAFE_DOMAIN: ${{ inputs.safe_domain }}
+          pake ./stable-diffusion-inspector/dist/index.html  --name tagviewer --use-local-file
+        #   node ./script/build_with_pake_cli.js
+        # env:
+        #   URL: ./stable-diffusion-inspector/dist/index.html
+        #   NAME: tagviewer
+        #   HEIGHT: ${{ inputs.height }}
+        #   WIDTH: ${{ inputs.width }}
+        #   HIDE_TITLE_BAR: ${{ inputs.hide_title_bar }}
+        #   FULLSCREEN: ${{ inputs.fullscreen }}
+        #   RESIZE: ${{ inputs.resize }}
+        #   MULTI_ARCH: ${{ inputs.multi_arch }}
+        #   TARGETS: ${{ inputs.targets }}
+        #   SAFE_DOMAIN: ${{ inputs.safe_domain }}
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
