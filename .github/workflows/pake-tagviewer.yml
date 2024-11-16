@@ -113,6 +113,7 @@ jobs:
         run: |
           git clone https://github.com/atonyxu/stable-diffusion-inspector
           cd stable-diffusion-inspector
+          npm install vite
           npm run build
 
       - name: Build with pake-cli
