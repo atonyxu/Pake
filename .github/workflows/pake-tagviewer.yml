@@ -1,4 +1,4 @@
-name: Build UtaFormatix With Pake CLI
+name: Build TagViewer With Pake CLI
 on:
   workflow_dispatch:
     inputs:
