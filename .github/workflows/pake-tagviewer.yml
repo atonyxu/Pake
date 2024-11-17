@@ -141,9 +141,8 @@ jobs:
           key: ${{ inputs.platform }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
           
       - name: Create release 
-        if: ${{ inputs.create-release }}
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ inputs.version }}
+          tag_name: 1.0.0.0
           files: |
             tagviewer-${{ inputs.platform }}.zip
