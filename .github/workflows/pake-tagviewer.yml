@@ -120,24 +120,12 @@ jobs:
       - name: Build with pake-cli
         run: |
           pake ./stable-diffusion-inspector/dist/index.html  --name tagviewer --use-local-file
-        #   node ./script/build_with_pake_cli.js
-        # env:
-        #   URL: ./stable-diffusion-inspector/dist/index.html
-        #   NAME: tagviewer
-        #   HEIGHT: ${{ inputs.height }}
-        #   WIDTH: ${{ inputs.width }}
-        #   HIDE_TITLE_BAR: ${{ inputs.hide_title_bar }}
-        #   FULLSCREEN: ${{ inputs.fullscreen }}
-        #   RESIZE: ${{ inputs.resize }}
-        #   MULTI_ARCH: ${{ inputs.multi_arch }}
-        #   TARGETS: ${{ inputs.targets }}
-        #   SAFE_DOMAIN: ${{ inputs.safe_domain }}
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
           name: output-${{ inputs.platform }}.zip
-          path: D:\a\Pake\Pake\tagviewer.msi
+          path: ./tagviewer.*
           retention-days: 3
 
       - name: Rust cache store
@@ -151,3 +139,11 @@ jobs:
             ~/.cargo/git/db/
             node_modules/pake-cli/src-tauri/target/
           key: ${{ inputs.platform }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
+          
+      - name: Create release 
+        if: ${{ inputs.create-release }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ inputs.version }}
+          files: |
+            tagviewer-${{ inputs.platform }}.zip
