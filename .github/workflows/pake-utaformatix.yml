@@ -91,6 +91,7 @@ jobs:
         run: |
           echo "install pake on local"
           npm install pake-cli
+          npm install pake-cli -g
 
       - name: Rust cache restore
         uses: actions/cache/restore@v3
@@ -140,25 +141,13 @@ jobs:
 
       - name: Build with pake-cli
         run: |
-          node ./script/build_with_pake_cli.js
-        env:
-          URL: ./utaformatix3-electron/build/distributions/index.html
-          NAME: UtaFormatix
-          ICON: ./uf.ico
-          HEIGHT: ${{ inputs.height }}
-          WIDTH: ${{ inputs.width }}
-          HIDE_TITLE_BAR: ${{ inputs.hide_title_bar }}
-          FULLSCREEN: ${{ inputs.fullscreen }}
-          RESIZE: ${{ inputs.resize }}
-          MULTI_ARCH: ${{ inputs.multi_arch }}
-          TARGETS: ${{ inputs.targets }}
-          SAFE_DOMAIN: ${{ inputs.safe_domain }}
+          pake ./utaformatix3-electron/build/distributions/index.html  --name utaformatix --use-local-file
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
           name: output-${{ inputs.platform }}.zip
-          path: node_modules/pake-cli/output/*
+          path: D:\a\Pake\Pake\utaformatix.msi
           retention-days: 3
 
       - name: Rust cache store
