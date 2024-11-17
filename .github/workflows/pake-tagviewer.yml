@@ -91,6 +91,7 @@ jobs:
         run: |
           echo "install pake on local"
           npm install pake-cli
+          npm install pake-cli -g
 
       - name: Rust cache restore
         uses: actions/cache/restore@v3
