@@ -103,7 +103,7 @@ jobs:
       - name: Build with pake-cli
         run: |
           pake ${{ inputs.index_location }}  --name ${{ inputs.project_name }} --use-local-file --height ${{ inputs.height }} --width ${{ inputs.width }}
-          zip -r ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip ./${{ inputs.project_name }}.*
+          7z a ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip ./${{ inputs.project_name }}.*
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
