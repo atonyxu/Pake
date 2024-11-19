@@ -103,12 +103,13 @@ jobs:
       - name: Build with pake-cli
         run: |
           pake ${{ inputs.index_location }}  --name ${{ inputs.project_name }} --use-local-file --height ${{ inputs.height }} --width ${{ inputs.width }}
+          zip -r ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip ./${{ inputs.project_name }}.*
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip
-          path: ./${{ inputs.project_name }}.*
+          path: ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip
           retention-days: 3
 
       - name: Rust cache store
