@@ -47,7 +47,7 @@ jobs:
           format: "YYYYMMDD"
           
       - name: Get Date See
-        run: echo "${{ steps.date.outputs }}"
+        run: echo "${{ steps.date.outputs.time }}"
 
       - name: Install node
         uses: actions/setup-node@v3
@@ -129,7 +129,7 @@ jobs:
       - name: Create release 
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.date.outputs }}
-          body: ${{ inputs.project_name }} build on ${{ steps.date.outputs }}
+          tag_name: ${{ steps.date.outputs.time }}
+          body: ${{ inputs.project_name }} build on ${{ steps.date.outputs.time }}
           files: |
             ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip
