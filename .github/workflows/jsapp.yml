@@ -45,9 +45,6 @@ jobs:
         uses: Kaven-Universe/github-action-current-date-time@v1
         with:
           format: "YYYYMMDD"
-          
-      - name: Get Date See
-        run: echo "${{ steps.date.outputs.time }}"
 
       - name: Install node
         uses: actions/setup-node@v3
