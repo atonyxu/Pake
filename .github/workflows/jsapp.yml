@@ -41,7 +41,13 @@ jobs:
 
     steps:
       - name: Get Date
-        uses: benzine-framework/action-get-datetime@v1
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYYMMDD"
+          
+      - name: Get Date See
+        run: echo "${{ steps.date.outputs }}"
 
       - name: Install node
         uses: actions/setup-node@v3
@@ -123,7 +129,7 @@ jobs:
       - name: Create release 
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.DATE }}
-          body: ${{ inputs.project_name }} build on ${{ env.DATE }}
+          tag_name: ${{ steps.date.outputs }}
+          body: ${{ inputs.project_name }} build on ${{ steps.date.outputs }}
           files: |
             ${{ inputs.project_name }}-${{ matrix.os.arch }}-rust.zip
