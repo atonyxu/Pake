@@ -121,8 +121,9 @@ jobs:
           key: ${{ matrix.os.runs-on }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
           
       - name: Create release 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.project_name }}-$(date -u +'%Y%m%d')
+          tag_name: $(date -u +'%Y%m%d')
+          body: ${{ inputs.project_name }} build on $(date -u +'%Y%m%d')
           files: |
             ${{ inputs.project_name }}-${{ matrix.os.runs-on }}-rust.zip
