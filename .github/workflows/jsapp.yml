@@ -123,6 +123,6 @@ jobs:
       - name: Create release 
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: $(date -u +'%Y%m%d')-${{ inputs.project_name }}
+          tag_name: ${{ inputs.project_name }}-$(date -u +'%Y%m%d')
           files: |
             ${{ inputs.project_name }}-${{ matrix.os.runs-on }}-rust.zip
