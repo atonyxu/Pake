@@ -95,7 +95,7 @@ jobs:
 
       - name: Build Project
         run: |
-          ${{ inputs.build_cmd }}}}
+          ${{ inputs.build_cmd }}
 
       - name: Build with pake-cli
         run: |
